@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
-    render json: @items
+    render json: @items, include: [:list]
   end
 
   # GET /items/1
@@ -46,6 +46,6 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:name)
+      params.require(:item).permit(:name, :list_id)
     end
 end

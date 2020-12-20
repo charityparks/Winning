@@ -3,25 +3,44 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @items = Item.all
-
-    render json: @items, include: [:list]
+    # @items = Item.all
+    @items = Item.where(list_id: params[:list_id])
+    render json: ItemSerializer.new(@items).serialized_json, status: :ok
+    # render json: @items, include: [:list]
   end
 
   # GET /items/1
   def show
-    render json: @item
+  
+    @item = find_by(id: params[:id])
+    render json: ItemSerializer.new(@item).serialized_json, status: :ok
+
+    # render json: @item
   end
 
   # POST /items
   def create
-    @item = Item.new(item_params)
-
-    if @item.save
-      render json: @item, status: :created, location: @item
-    else
-      render json: @item.errors, status: :unprocessable_entity
+    if params[:list_id]
+      @list = List.find_by(list_id: params[:list_id])
+      @item = @list.items.build(item_params)
+            if @item.save
+                render json: ItemSerializer.new(@item).serialized_json, status: :ok
+            else
+                error_resp = {
+                    error: @item.errors.full_messages.to_sentence
+                }
+                render json: error_resp, status: :unprocessable_entity
+            end
+          end
     end
+
+    # @item = Item.new(item_params)
+
+    # if @item.save
+    #   render json: @item, status: :created, location: @item
+    # else
+    #   render json: @item.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /items/1

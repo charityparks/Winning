@@ -3,6 +3,7 @@ class ListsController < ApplicationController
 
   # GET /lists
   def index
+    
     @lists = List.all
 
     render json: @lists
@@ -15,6 +16,14 @@ class ListsController < ApplicationController
 
   # POST /lists
   def create
+    # @list = list.recipes.build(list_params)
+    #     if @list.save
+    #         render json: ListSerializer.new(@list).serialized_json, status: :created
+    #     else
+    #         error_resp = {
+    #             error: @list.errors.full_messages.to_sentence
+    #         }
+    #         render json: error_resp, status: :unprocessable_entity
     @list = List.new(list_params)
 
     if @list.save

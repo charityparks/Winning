@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
                 }
                 render json: error_resp, status: :unprocessable_entity
             end
-          end
+      end
     end
 
     # @item = Item.new(item_params)
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     # else
     #   render json: @item.errors, status: :unprocessable_entity
     # end
-  end
+  
 
   # PATCH/PUT /items/1
   def update

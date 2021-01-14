@@ -7,4 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-List.create(title: 'HoneyDo', description: "This list is Brians list of things to do.")
+list1 = List.create(title: 'HoneyDo', description: "This list is Brians list of things to do.")
+
+    # list1.items.create(
+    #    [{
+	# 	name: "Repair Gazebo"	
+    # },
+    # {
+	# 	name: "Cancel old healthcare insurance"
+    # },
+    # {
+	# 	name: "Get a new car"	
+    # }]
+        
+    # )

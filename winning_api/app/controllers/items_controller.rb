@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
+    byebug
     if params[:list_id]
       @list = List.find_by(list_id: params[:list_id])
       @item = @list.items.build(item_params)

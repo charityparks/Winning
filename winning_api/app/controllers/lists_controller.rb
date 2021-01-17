@@ -40,8 +40,13 @@ class ListsController < ApplicationController
 
   # DELETE /lists/1
   def destroy
+    @list = List.find_by(id: params[:id])
     @list.destroy
   end
+  
+  # def destroy
+  #   @list.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

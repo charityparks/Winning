@@ -42,9 +42,15 @@ class ItemsController < ApplicationController
   end
 
   # DELETE /items/1
+
   def destroy
-    @item.destroy
+    @list = List.find_by(id: params[:id])
+    @list.destroy
   end
+  
+  # def destroy
+  #   @item.destroy
+  # end
 
   private
 
